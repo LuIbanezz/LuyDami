@@ -59,7 +59,7 @@ g4 = g4.subs(g, 0.1E-6)
 print("K = ",K)
 print("Ga = ",ga)
 print ("G1 = ",g1)
-print ("G4 = ",g)
+print ("G4 = ",g4)
 print ("C2 = C3 = C = ",C)
 
 
