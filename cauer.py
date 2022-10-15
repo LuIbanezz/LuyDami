@@ -25,7 +25,7 @@ ax.scatter(np.real(z), np.imag(z), marker='o', color='Red')
 K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp = sp.symbols('K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp')
 eq0=sp.Eq(K, 1+1/(2*q0**2)*(1-q0/q))
 eq1 = sp.Eq(ga,(K-1)*gb)
-eq2 = sp.Eq(g1,4*q0**2*g)
+#eq2 = sp.Eq(g1,4*q0**2*g)
 eq3 = sp.Eq(C,g*w0/(2*q0))
 eq4 = sp.Eq(g4,g)
 eq5 = sp.Eq(k, ((wz/w0)**2/(1-q0/q)))
@@ -35,9 +35,11 @@ eq8 = sp.Eq(h, m/(1-m))
 eq9 = sp.Eq(c22/c21, h)
 eq10 = sp.Eq(c22 + c21, C)
 eq11 = sp.Eq(wp, w0*(1+q0*(w0/wt)))
+eq12 = sp.Eq(g1, 2*q0*wp*(C*(c21+c22))**0.5)
 
 
-eqs = [eq0,eq1,eq2,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11]
+
+eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12]
 
 dic1 = sp.solve(eqs, [K,ga,g1,C,g4,k,n,m,h, c22, c21,wp]) 
 
@@ -85,6 +87,7 @@ m = m.subs(w0, 85.5E3)
 c21= c21.subs(w0, 85.5E3)
 c22 = c22.subs(w0, 85.5E3)
 wp = wp.subs(w0, 85.5E3)
+g1 = g1.subs(w0, 85.5E3)
 
 g1 = g1.subs(g, 0.01E-6)
 C = C.subs(g, 0.01E-6)
@@ -97,6 +100,9 @@ n = n.subs(wz, 27.53E3)
 m = m.subs(wz, 27.53E3)
 c21 = c21.subs(wz, 27.53E3)
 c22 = c22.subs(wz, 27.53E3)
+
+wp = wp.subs(wt, 17.17E6)
+g1 = g1.subs(wt, 17.17E6)
 
 
 print("K = ",K)
@@ -112,6 +118,7 @@ print ("c22 =", c22)
 print("c21 = ",c21)
 print("A0 = 204000, wp = 84.2")
 print("wt =", 17.17E6)
+print("wp =", wp)
 
 
 
