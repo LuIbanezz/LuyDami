@@ -39,10 +39,12 @@ eq12 = sp.Eq(g1, 2*q0*wp*(C*(c21+c22))**0.5)
 eq13 = sp.Eq(qp, q*(1-2*q0*q*(w0/wt)*(1/(2*q)-w0/wt)))
 eq14 = sp.Eq(g41+g42,g1/(4*q0**2))
 eq15 = sp.Eq((ga1+ga2)/gb, ((g41+g42)/g1)*((c21+c22+C)/C)-(wp*(c21+c22)/(qp*g1)))
+eq16 = sp.Eq(((ga1 + ga2 + gb)/(gb))*g42*((1/(c21+c22))+1/C)-(ga2/gb)*((g1/(c21+c22))+(g41+g42)*((1/(c21+c22))+1/C)), 0)
+eq17 = sp.Eq(wz**2, (g1*(g41+g42))/(C*(c21+c22))*((g42/(g41+g42)*(ga1+ga2+gb)/gb)-(ga2/gb)))
 
 
 
-eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13,eq14,eq15]
+eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13,eq14,eq15,eq16]
 
 dic1 = sp.solve(eqs, [K,ga,g1,g,g4,k,n,m,h, c22, c21,wp,qp,g41,g42,ga1,ga2]) 
 
