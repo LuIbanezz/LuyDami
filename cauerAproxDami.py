@@ -39,14 +39,14 @@ w_0, Q, Q_0, G, C, G_1, G_b = sp.symbols('w_0,Q,Q_0,G,C,G_1,G_b')
 
 w_0 = 7713242650**(1/2) # 87825,068
 w_z = 819315560**(1/2)
-eq_1 = sp.Eq( Q , w_0/40559.8221 ) # 2,165
+Q = w_0/40559.8221
 Q_0 = 1
-C = 100E-9
+C = 1E-9
 eq_4 = sp.Eq( C, (G * w_0)/( 2 * Q_0))  
 
 ## G
 
-eqs_1 = [eq_1, eq_4]
+eqs_1 = [eq_4]
 sol_Q = (sp.solve(eqs_1, [G, Q]))[Q]
 Q = sol_Q
 
@@ -133,7 +133,7 @@ eq_20 = sp.Eq( Ga_2, sol_Ga_2)
 
 sol_5 = sp.solve( [eq_15,eq_16,eq_19,eq_20] , [G_41, G_42, Ga_1, Ga_2])
 
-#print(sol_5)
+print(sol_5)
 
 sol_G_41 = sol_5[0][0].subs({G_1 : sol_G_1})
 sol_G_42 = sol_5[0][1].subs({G_1 : sol_G_1})
