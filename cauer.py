@@ -22,7 +22,7 @@ ax.scatter(np.real(z), np.imag(z), marker='o', color='Red')
 #plt.show()
 #-----------------------------------------------------------------
 
-K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp = sp.symbols('K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp')
+K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp,g41,g42,ga1,ga2 = sp.symbols('K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp,g41,g42,ga1,ga2')
 eq0=sp.Eq(K, 1+1/(2*q0**2)*(1-q0/q))
 eq1 = sp.Eq(ga,(K-1)*gb)
 #eq2 = sp.Eq(g1,4*q0**2*g)
@@ -37,12 +37,14 @@ eq10 = sp.Eq(c22 + c21, C)
 eq11 = sp.Eq(wp, w0*(1+q0*(w0/wt)))
 eq12 = sp.Eq(g1, 2*q0*wp*(C*(c21+c22))**0.5)
 eq13 = sp.Eq(qp, q*(1-2*q0*q*(w0/wt)*(1/(2*q)-w0/wt)))
+eq14 = sp.Eq(g41+g42,g1/(4*q0**2))
+eq15
 
 
 
-eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13]
+eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13,eq14]
 
-dic1 = sp.solve(eqs, [K,ga,g1,C,g4,k,n,m,h, c22, c21,wp,qp]) 
+dic1 = sp.solve(eqs, [K,ga,g1,g,g4,k,n,m,h, c22, c21,wp,qp,g41,g42]) 
 
 
 #print(dic1)
@@ -63,7 +65,8 @@ qp = dic1[qp]
 K = K.subs(q0, 1)
 ga = ga.subs(q0, 1)
 g1 = g1.subs(q0, 1)
-C = C.subs(q0, 1)
+g4 = g4.subs(q0, 1)
+g = g.subs(q0, 1)
 k = k.subs(q0, 1)
 n = n.subs(q0, 1)
 m = m.subs(q0, 1)
@@ -84,7 +87,7 @@ qp = qp.subs(q, 2.63)
 
 ga = ga.subs(gb, 1E-3)
 
-C = C.subs(w0, 85.5E3)
+g = g.subs(w0, 85.5E3)
 k = k.subs(w0, 85.5E3)
 n = n.subs(w0, 85.5E3)
 m = m.subs(w0, 85.5E3)
@@ -93,12 +96,13 @@ c22 = c22.subs(w0, 85.5E3)
 wp = wp.subs(w0, 85.5E3)
 g1 = g1.subs(w0, 85.5E3)
 qp = qp.subs(w0, 85.5E3)
+g4 = g4.subs(w0, 85.5E3)
 
-g1 = g1.subs(g, 0.01E-6)
-C = C.subs(g, 0.01E-6)
-g4 = g4.subs(g, 0.01E-6)
-c21 = c21.subs(g, 0.01E-6)
-c22 = c22.subs(g, 0.01E-6)
+g1 = g1.subs(C, 100E-9)
+g = g.subs(C, 100E-9)
+g4 = g4.subs(C, 100E-9)
+c21 = c21.subs(C, 100E-9)
+c22 = c22.subs(C, 100E-9)
 
 k = k.subs(wz, 27.53E3)
 n = n.subs(wz, 27.53E3)
@@ -115,7 +119,7 @@ print("K = ",K)
 print("Ga = ",ga)
 print ("G1 = ",g1)
 print ("G4 = ",g4)
-print ("C2 = C3 = C = ",C)
+print ("C2 = C3 = C = ",100e-9)
 print ("k = ", k)
 print("n = ", n)
 print("m = ", m)
