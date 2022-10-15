@@ -38,13 +38,13 @@ eq11 = sp.Eq(wp, w0*(1+q0*(w0/wt)))
 eq12 = sp.Eq(g1, 2*q0*wp*(C*(c21+c22))**0.5)
 eq13 = sp.Eq(qp, q*(1-2*q0*q*(w0/wt)*(1/(2*q)-w0/wt)))
 eq14 = sp.Eq(g41+g42,g1/(4*q0**2))
-eq15
+eq15 = sp.Eq((ga1+ga2)/gb, ((g41+g42)/g1)*((c21+c22+C)/C)-(wp*(c21+c22)/(qp*g1)))
 
 
 
-eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13,eq14]
+eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13,eq14,eq15]
 
-dic1 = sp.solve(eqs, [K,ga,g1,g,g4,k,n,m,h, c22, c21,wp,qp,g41,g42]) 
+dic1 = sp.solve(eqs, [K,ga,g1,g,g4,k,n,m,h, c22, c21,wp,qp,g41,g42,ga1,ga2]) 
 
 
 #print(dic1)
@@ -61,6 +61,10 @@ c22 = dic1[c22]
 c21 = dic1[c21]
 wp = dic1[wp]
 qp = dic1[qp]
+ga1 = dic1[ga1]
+ga2 = dic1[ga2]
+g41 = dic1[g41]
+g42 = dic1[g42]
 
 K = K.subs(q0, 1)
 ga = ga.subs(q0, 1)
@@ -130,7 +134,10 @@ print("A0 = 204000, wp = 84.2")
 print("wt =", 17.17E6)
 print("wp =", wp)
 print("qp =", qp)
-
+print("ga1 =", ga1)
+print("ga2 =", ga2)
+print("g41 =", g41)
+print("g42 =", g42)
 
 
 
