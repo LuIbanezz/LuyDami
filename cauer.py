@@ -22,7 +22,7 @@ ax.scatter(np.real(z), np.imag(z), marker='o', color='Red')
 #plt.show()
 #-----------------------------------------------------------------
 
-K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp = sp.symbols('K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp')
+K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp = sp.symbols('K,q,q0,ga,gb,g1,g,C,w0,g4,g1,k,wz,n,m,h,c22,c21,wt,wp,qp')
 eq0=sp.Eq(K, 1+1/(2*q0**2)*(1-q0/q))
 eq1 = sp.Eq(ga,(K-1)*gb)
 #eq2 = sp.Eq(g1,4*q0**2*g)
@@ -36,19 +36,20 @@ eq9 = sp.Eq(c22/c21, h)
 eq10 = sp.Eq(c22 + c21, C)
 eq11 = sp.Eq(wp, w0*(1+q0*(w0/wt)))
 eq12 = sp.Eq(g1, 2*q0*wp*(C*(c21+c22))**0.5)
+eq13 = sp.Eq(qp, q*(1-2*q0*q*(w0/wt)*(1/(2*q)-w0/wt)))
 
 
 
-eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12]
+eqs = [eq0,eq1,eq3,eq4,eq5,eq6,eq7,eq8, eq9, eq10,eq11,eq12,eq13]
 
-dic1 = sp.solve(eqs, [K,ga,g1,C,g4,k,n,m,h, c22, c21,wp]) 
+dic1 = sp.solve(eqs, [K,ga,g1,C,g4,k,n,m,h, c22, c21,wp,qp]) 
 
 
 #print(dic1)
 K = dic1[K]
 ga = dic1[ga]
 g1 = dic1[g1]
-C = dic1[C]
+g = dic1[g]
 g4 = dic1[g4]
 k = dic1[k]
 n = dic1[n]
@@ -57,6 +58,7 @@ h = dic1[h]
 c22 = dic1[c22]
 c21 = dic1[c21]
 wp = dic1[wp]
+qp = dic1[qp]
 
 K = K.subs(q0, 1)
 ga = ga.subs(q0, 1)
@@ -68,6 +70,7 @@ m = m.subs(q0, 1)
 c21 = c21.subs(q0, 1)
 c22 = c22.subs(q0, 1)
 wp = wp.subs(q0, 1)
+qp = qp.subs(q0, 1)
 
 K= K.subs(q, 2.63)
 ga = ga.subs(q, 2.63)
@@ -76,6 +79,7 @@ n = n.subs(q, 2.63)
 m = m.subs(q, 2.63)
 c21 = c21.subs(q, 2.63)
 c22 = c22.subs(q, 2.63)
+qp = qp.subs(q, 2.63)
 
 
 ga = ga.subs(gb, 1E-3)
@@ -88,6 +92,7 @@ c21= c21.subs(w0, 85.5E3)
 c22 = c22.subs(w0, 85.5E3)
 wp = wp.subs(w0, 85.5E3)
 g1 = g1.subs(w0, 85.5E3)
+qp = qp.subs(w0, 85.5E3)
 
 g1 = g1.subs(g, 0.01E-6)
 C = C.subs(g, 0.01E-6)
@@ -103,6 +108,7 @@ c22 = c22.subs(wz, 27.53E3)
 
 wp = wp.subs(wt, 17.17E6)
 g1 = g1.subs(wt, 17.17E6)
+qp = qp.subs(wt, 17.17E6)
 
 
 print("K = ",K)
@@ -119,6 +125,7 @@ print("c21 = ",c21)
 print("A0 = 204000, wp = 84.2")
 print("wt =", 17.17E6)
 print("wp =", wp)
+print("qp =", qp)
 
 
 
