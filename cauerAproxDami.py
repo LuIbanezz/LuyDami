@@ -126,12 +126,12 @@ sol_4 = sp.solve([eq_17,eq_18] , [G_42, Ga_2])
 sol_G_42 = sol_4[0][0].subs({G_1 : sol_G_1, w_z: 819315560**(1/2)})
 sol_Ga_2 = sol_4[0][1].subs({G_1 : sol_G_1, w_z: 819315560**(1/2)})
 
-eq_15 = sp.Eq( G_41+G_41,G_1/(4*Q_0**2))
+eq_15 = sp.Eq( G_41+G_42,G_1/(4*Q_0**2))
 eq_16 = sp.Eq( ((Ga_1 + Ga_2 + G_b)/(G_b)) * G_42 * ((1/(C21+C22)) + 1/C) - (Ga_2/G_b)*((G_1 /(C21 + C22)) + (G_41 + G_42) *((1/(C21+C22)) + 1/C)), 0)
 eq_19 = sp.Eq( G_42, sol_G_42)
 eq_20 = sp.Eq( Ga_2, sol_Ga_2)
 
-sol_5 = sp.solve( [eq_15,eq_16,eq_19,eq_20] , [G_41, G_42, Ga_1, Ga_2,])
+sol_5 = sp.solve( [eq_15,eq_16,eq_19,eq_20] , [G_41, G_42, Ga_1, Ga_2])
 
 #print(sol_5)
 
@@ -144,3 +144,16 @@ print('Ga_1 = ', sol_Ga_1)
 print('G_41 = ', sol_G_41)
 print('G_42 = ', sol_G_42)
 print('Ga_2 = ', sol_Ga_2) 
+
+#Valores finales de las resistencias
+
+print('A continuación los valores finales que hay que poner en el circuito \n\n\n\n')
+
+print('Ra1 = ', 1 / (sol_Ga_1))
+print('Ra2 = ', 1 / (sol_Ga_2))
+print('Rb = ', 1 / (G_b))
+print('R41 = ', 1 / (sol_G_41))
+print('R42 = ', 1 / (sol_G_42))
+print('C3 =' , C)
+print('C22 =' , C22)
+print('C21 =' , C21)
