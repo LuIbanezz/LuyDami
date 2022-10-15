@@ -113,14 +113,14 @@ print('G_1 = ', sol_G_1)
 Q_p = sol_Q_p
 w_p = sol_w_p
 
-G_b = 1E-3
+G_b = 1E-3  #Número arbitrario a elección
 
 ## G_41, G_42, Ga_1, Ga_2
 
 G_41, G_42, Ga_1, Ga_2 = sp.symbols('G_41, G_42, Ga_1, Ga_2')
 
 eq_17 = sp.Eq((Ga_1+Ga_2)/G_b, ((G_41+G_42)/G_1)*((C21+C22+C)/C)-(w_p*(C21+C22)/(Q_p*G_1)))
-eq_18 = sp.Eq( ((G_1*(G_41+G_42))/(C*(C21+C22))*((G_42/(G_41+G_42)*(Ga_1+Ga_2+G_b)/G_b)-(Ga_2/G_b)))/(((Ga_1+Ga_2+G_b)/(G_b))*((C22)/(C22+C21)) - (Ga_2/G_b)) , w_z**2)
+eq_18 = sp.Eq( (((G_1*(G_41+G_42))/(C*(C21+C22)))*(((G_42/(G_41+G_42))*((Ga_1+Ga_2+G_b)/G_b))-(Ga_2/G_b)))/(((Ga_1+Ga_2+G_b)/(G_b))*((C22)/(C22+C21)) - (Ga_2/G_b)) , w_z**2)
 
 sol_4 = sp.solve([eq_17,eq_18] , [G_42, Ga_2])
 sol_G_42 = sol_4[0][0].subs({G_1 : sol_G_1, w_z: 819315560**(1/2)})
