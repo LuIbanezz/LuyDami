@@ -1,0 +1,16 @@
+* D:\Universidad\ITBA 2022\2C 2022\Teoria de Circuitos\TP4\Cauer\LuyDami\Circuito.asc
+XU1 0 N001 V+ V- Vo TL082
+R1 N001 0 5591
+V1 V+ 0 15
+V2 0 V- 15
+R2 Vo N001 1000
+R3 N001 0 8946
+C1 N002 0 829.8p
+C2 N002 0 1n
+R6 Vo N002 5664.12
+C3 N002 0 170.18p
+V3 0 0 AC 1.
+.ac dec 100 10 100000
+.lib TCLib/TL082.lib
+.backanno
+.end

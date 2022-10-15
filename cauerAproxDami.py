@@ -41,7 +41,7 @@ w_0 = 7713242650**(1/2) # 87825,068
 w_z = 819315560**(1/2)
 eq_1 = sp.Eq( Q , w_0/40559.8221 ) # 2,165
 Q_0 = 1
-C = 1E-9
+C = 100E-9
 eq_4 = sp.Eq( C, (G * w_0)/( 2 * Q_0))  
 
 ## G
@@ -102,9 +102,9 @@ eq_14 = sp.Eq(Q_p, Q*(1-2*Q_0*Q*(w_0/w_t)*(1/(2*Q)-(w_0/w_t))))
 
 sol_3 = sp.solve([eq_12, eq_13, eq_14], [w_p, Q_p, G_1])
 
-sol_w_p = sol_3[w_p].subs({w_t: 17.17E6})
-sol_Q_p = sol_3[Q_p].subs({w_t: 17.17E6})
-sol_G_1 = sol_3[G_1].subs({w_t: 17.17E6})
+sol_w_p = sol_3[w_p].subs({w_t: 17.17571E6})
+sol_Q_p = sol_3[Q_p].subs({w_t: 17.17571E6})
+sol_G_1 = sol_3[G_1].subs({w_t: 17.17571E6})
 
 print('w_p = ', sol_w_p)
 print('Q_p = ', sol_Q_p)
@@ -149,9 +149,12 @@ print('Ga_2 = ', sol_Ga_2)
 
 print('A continuación los valores finales que hay que poner en el circuito \n\n\n\n')
 
+print('R1 = ', 1 / (sol_G_1))
 print('Ra1 = ', 1 / (sol_Ga_1))
 print('Ra2 = ', 1 / (sol_Ga_2))
 print('Rb = ', 1 / (G_b))
+print('G41 = ', (sol_G_41))
+print('G42 = ', (sol_G_42))
 print('R41 = ', 1 / (sol_G_41))
 print('R42 = ', 1 / (sol_G_42))
 print('C3 =' , C)
