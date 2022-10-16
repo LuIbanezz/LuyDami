@@ -11,13 +11,11 @@ def inferior_nominal_value(x):
     res = 10 ** (nfloor/12)
     return res
 
-
 def nearest_nominal_value(x):
     n = 12*np.log10(x)
     nround = np.round(n)
     res = 10 ** (nround/12)
     return res
-
 
 N, Wn = signal.ellipord(14000*2*pi, 3500*2*pi, 1, 43, analog=True)
 print("El orden del filtro deberá ser ",N )
@@ -28,7 +26,7 @@ b, a = signal.ellip(N, 1, 43, Wn, 'high', analog=True, output='ba')
 
 sos = signal.ellip(N, 1, 43, Wn, 'high', analog=True, output='sos')
 
-#print("A continuacion expreso la funcion transferencia directamente como suma de funciones de segundo orden")
+#print("A continuacion expreso la funcion transferencia directamente como cascada de funciones de segundo orden")
 #print(sos)
 
 # A partir de estos valores ya puede graficarse la respuesta en frecuencia con las siguiente linea
@@ -45,8 +43,8 @@ plt.axis([1000, 20000, -180, 3])
 #Calculos para el RC
 wrc = sos[0][5]
 rc = 1/wrc
-C = 1e-9    #Calcular al revés para que haya una alta impedancia de entrada
-R = rc/C
+R = 68E3  
+C = rc/R
 
 #Calculos para el de ripple
 hp = sos[1]
@@ -127,3 +125,6 @@ print('C21 = ', C21)
 print('\n\n Para el RC:')
 print('R = ', R)
 print('C = ', C)
+
+
+## Ahora tocan los cálculos de las sensibilidades
