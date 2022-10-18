@@ -12,7 +12,7 @@ def CalculateSens(H, R): #Calculates sensitivity of H respect of R
 
 n2,n0,w02,Q,H,w0Q = sp.symbols('n2,n0,w02,Q,H,w0Q')
 #w = sp.symbols('w', real=True)
-w = 2*pi*3500 #Evalúo w en la frecuencia de la banda pasante
+w = 2*pi*14000 #Evalúo w en la frecuencia de la banda pasante
 C3,C22,C21,R1,R42,R41,RA2,RA1,RB = sp.symbols('C3,C22,C21,R1,R42,R41,RA2,RA1,RB', real=True)
 #Ga1, Ga2, Gb, G41, G42, G1  = sp.symbols('Ga1, Ga2, Gb, G41, G42, G1', real=True)
 
@@ -36,21 +36,21 @@ Gain = ( (sp.re(H))**2 + (sp.im(H))**2 )**(1/2)
 
 print('La ganancia es:', Gain,'\n\n\n')
 
-print('S^G_Ra1 = ', CalculateSens(Gain, RA1).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_Ra2 = ', CalculateSens(Gain, RA2).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_R41 = ', CalculateSens(Gain, R41).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_R42 = ', CalculateSens(Gain, R42).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_R1 = ', CalculateSens(Gain, R1).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_Rb = ', CalculateSens(Gain, RB).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_C21 = ', CalculateSens(Gain, C21).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_C22 = ', CalculateSens(Gain, C22).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
-print('S^G_C3 = ', CalculateSens(Gain, C3).subs( {C3: 5.623413251903491e-09,C22: 4.641588833612773e-09, \
-    C21: 1e-09,R1: 1006.07,R42: 32601.04,R41: 4591.03,RA2: 191388.53,RA1: 46250.86,RB: 10000.0}))
+print('S^G_Ra1 = ', CalculateSens(Gain, RA1).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_Ra2 = ', CalculateSens(Gain, RA2).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_R41 = ', CalculateSens(Gain, R41).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_R42 = ', CalculateSens(Gain, R42).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_R1 = ', CalculateSens(Gain, R1).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_Rb = ', CalculateSens(Gain, RB).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_C21 = ', CalculateSens(Gain, C21).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_C22 = ', CalculateSens(Gain, C22).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))
+print('S^G_C3 = ', CalculateSens(Gain, C3).subs( {C3: 13E-09,C22: 12E-09, \
+    C21: 1e-09,R1: 371.73, R42: 34500 ,R41: 2495.8 ,RA2: 56150 , RA1: 13300,RB: 1000.0}))

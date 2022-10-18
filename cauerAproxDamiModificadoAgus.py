@@ -17,17 +17,17 @@ def nearest_nominal_value(x):
     res = 10 ** (nround/12)
     return res
 
-N, Wn = signal.ellipord(14000*2*pi, 3500*2*pi, 1, 43, analog=True)
+N, Wn = signal.ellipord(14000*2*pi, 3500*2*pi, 0.5, 50, analog=True)
 print("El orden del filtro deberá ser ",N )
 
-b, a = signal.ellip(N, 1, 43, Wn, 'high', analog=True, output='ba')
+b, a = signal.ellip(N, 0.5, 50, Wn, 'high', analog=True, output='ba')
 
-#print("La función transferencia es b/a donde\n b =", b, "y a = ",a )
+print("La función transferencia es b/a donde\n b =", b, "y a = ",a )
 
-sos = signal.ellip(N, 1, 43, Wn, 'high', analog=True, output='sos')
+sos = signal.ellip(N, 0.5, 50, Wn, 'high', analog=True, output='sos')
 
-#print("A continuacion expreso la funcion transferencia directamente como cascada de funciones de segundo orden")
-#print(sos)
+print("A continuacion expreso la funcion transferencia directamente como cascada de funciones de segundo orden")
+print(sos)
 
 # A partir de estos valores ya puede graficarse la respuesta en frecuencia con las siguiente linea
 
@@ -43,7 +43,7 @@ plt.axis([1000, 20000, -180, 3])
 #Calculos para el RC
 wrc = sos[0][5]
 rc = 1/wrc
-R = 68E3  
+R = 220E3  
 C = rc/R
 
 #Calculos para el de ripple
@@ -53,8 +53,11 @@ wz = np.sqrt(hp[2])     # w del cero
 w0 = np.sqrt(hp[5])     # w del polo
 Q = w0 / hp[4]
 
+print('Q = ', Q)
+print('w0 = ', w0)
+
 # Paso 1
-Q0 = 1
+Q0 = 1.25
 K = 1 + (1/(2*Q0**2))*(1-Q0/Q)
 
 n2 = 1
@@ -68,10 +71,12 @@ m = k * ((K-1)/K) * (1 + 2*Q0**2 * (w0/wz)**2)
 C21 = 1e-9
 C22_ideal = C21*(m/(1-m))
 # Se elige a mano para que el cociente C22/C21 sea mas peque y de paso C22 sea nominal
-C22 = inferior_nominal_value(C22_ideal)
+#C22 = inferior_nominal_value(C22_ideal)
+C22 = 12E-9
 
 C3_ideal = C21 + C22
-C3 = nearest_nominal_value(C3_ideal)     # C3 es aprox. la suma de arriba
+C3 = C3_ideal
+#C3 = nearest_nominal_value(C3_ideal)     # C3 es aprox. la suma de arriba
 
 # Paso 3
 wp = w0 * (1 + Q0*w0/wt)
@@ -83,7 +88,7 @@ G1 = 2 * Q0 * wp * np.sqrt(C3*(C21+C22))
 G41pG42 = G1 / (4*Q0**2)  # G41 + G42
 
 # Paso 5
-Gb = 1e-4
+Gb = 1/(1E3)
 
 Ga1pGa2 = Gb * ((G41pG42/G1) * (C21 + C22 + C3)/C3 -
                 wp*(C21 + C22)/(Qp*G1))    # Ga1 + Ga2
