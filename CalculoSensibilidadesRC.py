@@ -11,8 +11,8 @@ def CalculateSens(H, R): #Calculates sensitivity of H respect of R
     return sens
 
 H = sp.symbols('H')
-#w = 2*pi*14000 #Evalúo w en la frecuencia de la banda pasante
-w = sp.symbols('w', real=True)
+w = 2*pi*3500 #Evalúo w en la frecuencia de la banda pasante
+#w = sp.symbols('w', real=True)
 R, C = sp.symbols('R, C', real= True)
 
 H = (sp.I * w) / ( sp.I * w + 1 / (R * C) )
@@ -23,9 +23,9 @@ Gain = ( (sp.re(H))**2 + (sp.im(H))**2 )**(1/2)
 
 print('La ganancia es:', Gain,'\n\n\n')
 
-print('S^G_R = ', CalculateSens(Gain, R))
+print('S^G_R = ', CalculateSens(Gain, R).subs({R: 220E3 , C: 33E-12 }))
 
-print('S^G_C = ', CalculateSens(Gain, C))
+print('S^G_C = ', CalculateSens(Gain, C).subs({R: 220E3 , C: 33E-12 }))
 
 print('S^fp_R = ', CalculateSens(fp, R))
 
