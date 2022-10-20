@@ -18,7 +18,14 @@ vernier = 0.00195313
 vernier = 0.000976563
 vernier = 0.000488281
 Gmin = 0
-Gmin stepping succeeded in finding the operating point.
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
 
 .step run=1
 .step run=2
@@ -69,72 +76,4 @@ Gmin stepping succeeded in finding the operating point.
 .step run=47
 .step run=48
 .step run=49
-.step run=50
-.step run=51
-.step run=52
-.step run=53
-.step run=54
-.step run=55
-.step run=56
-.step run=57
-.step run=58
-.step run=59
-.step run=60
-.step run=61
-.step run=62
-.step run=63
-.step run=64
-.step run=65
-.step run=66
-.step run=67
-.step run=68
-.step run=69
-.step run=70
-.step run=71
-.step run=72
-.step run=73
-.step run=74
-.step run=75
-.step run=76
-.step run=77
-.step run=78
-.step run=79
-.step run=80
-.step run=81
-.step run=82
-.step run=83
-.step run=84
-.step run=85
-.step run=86
-.step run=87
-.step run=88
-.step run=89
-.step run=90
-.step run=91
-.step run=92
-.step run=93
-.step run=94
-.step run=95
-.step run=96
-.step run=97
-.step run=98
-.step run=99
-.step run=100
-
-Date: Tue Oct 18 00:02:27 2022
-Total elapsed time: 13.931 seconds.
-
-tnom = 27
-temp = 27
-method = trap
-totiter = 1644
-traniter = 0
-tranpoints = 0
-accept = 0
-rejected = 0
-matrix size = 69
-fillins = 198
-solver = Normal
-Matrix Compiler1:     900 opcodes
-Matrix Compiler2: 9.33 KB object code size  1.3/1.6/[0.5]
-
+Fatal Error: Failed to find DC operating point for AC analysis.
