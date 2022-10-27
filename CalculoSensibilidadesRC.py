@@ -23,10 +23,15 @@ Gain = ( (sp.re(H))**2 + (sp.im(H))**2 )**(1/2)
 
 print('La ganancia es:', Gain,'\n\n\n')
 
+
+#print('S^G_R = ', CalculateSens(Gain, R))
 print('S^G_R = ', CalculateSens(Gain, R).subs({R: 220E3 , C: 33E-12 }))
 
+#print('S^G_C = ', CalculateSens(Gain, C))
 print('S^G_C = ', CalculateSens(Gain, C).subs({R: 220E3 , C: 33E-12 }))
 
 print('S^fp_R = ', CalculateSens(fp, R))
+print('S^fp_R = ', CalculateSens(fp, R))
 
+print('S^fp_C = ', CalculateSens(fp, C))
 print('S^fp_C = ', CalculateSens(fp, C))
